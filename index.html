@@ -1,11 +1,125 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <base href="/">
-    <title>Sarah M Wagner - Astrophysicist</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sarah Wagner * Astrophysicist</title>
+    <style>
+        /* Basic resets */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Fullscreen background image */
+        body, html {
+            height: 100%;
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Prevents page scrolling */
+        }
+
+        .full-screen-background {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('AGN.jpg'); /* Your image */
+            background-size: 100% 112%;
+            background-position: center;
+        }
+
+        /* Circle styles */
+        .circle {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-color: #3B7F70;
+            border-radius: 50%;
+            color: white;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* transition: transform 0.1s ease-out; /* Make movement smoother */
+        }
+
+        /* Initial circle positions in the top-left corner */
+        #circle1 {
+            top: 20%;
+            left: 20%;
+        }
+
+        #circle2 {
+            top: 20%;
+            left: 20%;
+        }
+
+        #circle3 {
+            top: 20%;
+            left: 20%;
+        }
+    </style>
 </head>
 <body>
-	Hello World
+
+    <!-- Full-Screen Background Section -->
+    <div class="full-screen-background">
+        <!-- Circles in the top-left -->
+        <div class="circle" id="circle1">Circle 1</div>
+        <div class="circle" id="circle2">Circle 2</div>
+        <div class="circle" id="circle3">Circle 3</div>
+    </div>
+
+    <script>
+        // Variables to track the scroll position
+        let scrollProgress = 0;
+        const maxMovement = 0.7; // Max movement distance (50% of the height)
+        
+        // Add mousewheel event listener
+        window.addEventListener("wheel", function(event) {
+            // Increment or decrement scroll progress based on mouse wheel scroll
+            if (event.deltaY > 0) {
+                // Scrolling down
+                scrollProgress += 0.05;
+            } else {
+                // Scrolling up
+                scrollProgress -= 0.05;
+            }
+            
+            // Make sure scrollProgress stays within bounds (0 to 1)
+            scrollProgress = Math.max(0, Math.min(maxMovement, scrollProgress));
+
+            // Move the circles based on the current scroll progress
+            moveCircles(scrollProgress);
+        });
+
+        // Function to move the circles based on scroll progress
+        function moveCircles(progress) {
+            let startX = window.innerWidth * 0; // 10% from left
+            let startY = window.innerHeight * 0; // 25% from top
+            let endX = window.innerWidth * 0.80; // 80% from left
+            let endY = window.innerHeight * 0.80; // 80% from top
+
+            // Move each circle according to its position and scroll progress
+            moveCircle('circle1', startX, startY, endX, endY, progress, 0.0);
+            moveCircle('circle2', startX, startY, endX, endY, progress, 0.2);
+            moveCircle('circle3', startX, startY, endX, endY, progress, 0.4);
+        }
+
+        // Function to apply the movement to individual circles
+        function moveCircle(circleId, startX, startY, endX, endY, progress, delay) {
+            let circle = document.getElementById(circleId);
+
+            // Adjust the position based on the scroll progress
+            let adjustedProgress = Math.min(Math.max(progress - delay, 0), 1);
+            let newX = startX + (endX - startX) * adjustedProgress;
+            let newY = startY + (endY - startY) * adjustedProgress;
+
+            // Apply transformation to the circle
+            circle.style.transform = `translate(${newX}px, ${newY}px)`;
+        }
+    </script>
+
 </body>
 </html>
