@@ -1,10 +1,14 @@
+<!-- Welcome to the source code of my website!
+I made this with some help of ChatGPT -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sarah Wagner * Astrophysicist</title>
+    <title>Sarah Wagner - Astrophysicist</title>
+    <link rel="icon" href="universe.gif" type="image/gif">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Basic resets */
         * {
@@ -20,11 +24,20 @@
             overflow: hidden; /* Prevents page scrolling */
         }
 
+        .a-text {
+            color: #3B7F70; /* Custom color for specified links */
+            text-decoration: none; /* Remove underline */
+        }
+
+        .a-text:hover {
+            color: #2AD4C4; /* Visited color for custom links */
+        }
+
         .full-screen-background {
             position: relative;
             width: 100vw;
             height: 100vh;
-            background-image: url('AGN.jpg'); /* Your image */
+            background-image: url('AGN_blurred.jpg'); /* Your image */
             background-size: 100% 112%;
             background-position: center;
         }
@@ -32,8 +45,8 @@
         /* Circle styles */
         .circle {
             position: absolute;
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             background-color: #3B7F70;
             border-radius: 50%;
             color: white;
@@ -41,10 +54,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            text-align: center;
+            text-decoration: none
             /* transition: transform 0.1s ease-out; /* Make movement smoother */
         }
 
         /* Initial circle positions in the top-left corner */
+        #circle0 {
+            top: 20%;
+            left: 20%;
+        }
+
         #circle1 {
             top: 20%;
             left: 20%;
@@ -59,25 +79,132 @@
             top: 20%;
             left: 20%;
         }
+
+        #circle4 {
+            top: 20%;
+            left: 20%;
+        }
+
+        #circle5 {
+            top: 20%;
+            left: 20%;
+        }
+
+        /* Arrow styling */
+        #scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 35px;
+            color: white;
+            opacity: 0.8;
+            animation: bounce 1.5s infinite; /* Bounce effect */
+            transition: opacity 0.5s ease;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translate(-50%, 0);
+            }
+            50% {
+                transform: translate(-50%, -10px); /* Moves up slightly */
+            }
+        }
+
+        /* Hide the arrow on scroll */
+        #scroll-indicator.hidden {
+            opacity: 0;
+            pointer-events: none; /* Makes it unclickable */
+        }
+
+        .social-icons {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            gap: 15px; /* Space between icons */
+        }
+
+        .social-icons a {
+            color: #3B7F70; /* Icon color */
+            font-size: 30px; /* Icon size */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: white; /* Color change on hover */
+        }
+
+        .heading {
+            color: #3B7F70; /* White text color */
+            text-align: center; /* Align text to the right */
+            margin: 10px 20px; /* Remove default margin */
+            font-family: 'Roboto', sans-serif; /* Your chosen font */
+            font-size: 36px; /* Adjust font size as needed */
+            position: absolute; /* Position it absolutely */
+            top: 20px; /* Adjust position from the top */
+            right: 20px; /* Adjust position from the right */
+            background-color: transparent; /* Ensure background is transparent */
+            z-index: 1000; /* Ensure it appears above the image */
+            width: 40%;
+            text-shadow: 
+                -1px -1px 0 #ffffff,  
+                 1px -1px 0 #ffffff,
+                -1px  1px 0 #ffffff,
+                 1px  1px 0 #ffffff; /* White outline effect */
+            }
+
+        .normal-text {
+            color: white; /* White text color */
+            text-align: justify; /* Align text to the right */
+            margin: 10px 20px; /* Add margin for spacing */
+            font-family: 'Roboto', sans-serif; /* Use the same font */
+            font-size: 16px; /* Adjust font size as needed */
+            position: absolute; /* Position it absolutely */
+            top: 70px; /* Adjust position below the heading */
+            right: 20px; /* Align to the right */
+            background-color: transparent; /* Ensure background is transparent */
+            z-index: 1000; /* Ensure it appears above the image */
+            width: 40%;
+        }
     </style>
 </head>
 <body>
 
+    <h1 class="heading">Sarah M. Wagner</h1>
+    <p class="normal-text">Hello, I am a PhD student at the Univeristy of Wuerzburg 📚👩‍🎓 specializing in extra-galactic high-energy astrophysics and time-series analysis. 🌌📈 I chase after jets that emerge from super massive black holes and try to understand why and how their brightness changes so drastically. 💥💡 To this end I analyse data from gamma-ray and X-ray satellites and compare it to simulations. 🛰️👩‍💻 I am also vice president of <a href="https://astronomersforplanet.earth" class="a-text">Astronomers for Planet Earth</a> and a member of our <a href="https://www.uni-wuerzburg.de/stuv/referat-ak/oekologie/" class="a-text">student association for sustainability</a>. 🍀👩‍🌾 
+    Thanks for stopping by!</p>
     <!-- Full-Screen Background Section -->
     <div class="full-screen-background">
+        <div id="scroll-indicator" class="arrow">⬇</div>
         <!-- Circles in the top-left -->
-        <div class="circle" id="circle1">Circle 1</div>
-        <div class="circle" id="circle2">Circle 2</div>
-        <div class="circle" id="circle3">Circle 3</div>
+        <a href="https://www.physik.uni-wuerzburg.de/fileadmin/11030400/BSc_Wagner_Sarah.pdf" class="circle" id="circle1" target="_blank">Bachelor's Thesis</a>
+        <a href="https://www.physik.uni-wuerzburg.de/fileadmin/11030400/MSc_Wagner_Sarah.pdf" class="circle" id="circle2" target="_blank">Master's Thesis</a>
+        <a href="https://scholar.google.com/citations?user=xD8JrHMAAAAJ&hl=de" class="circle" id="circle3" target="_blank">Google Scholar</a>
+        <a href="https://ui.adsabs.harvard.edu/search/fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq_database=(database%3Aastronomy%20OR%20database%3Aphysics)&p_=0&q=orcid%3A%220000-0002-8423-6947%22&sort=date%20desc%2C%20bibcode%20desc" class="circle" id="circle4" target="_blank">OrcID on ads</a>
+        <a href="CV_swagner.pdf" class="circle" id="circle5" target="_blank">CV</a>
+    </div>
+
+    <div class="social-icons">
+
+        <a href="https://www.instagram.com/swagner_astro/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://github.com/swagner-astro" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/sarah-maria-wagner-0019a9176/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="mailto:sarah.wagner@uni-wuerzburg.de" target="_blank"><i class="fas fa-envelope"></i></a>
     </div>
 
     <script>
         // Variables to track the scroll position
         let scrollProgress = 0;
-        const maxMovement = 0.7; // Max movement distance (50% of the height)
+        const maxMovement = 0.75; // Max movement distance (50% of the height)
         
         // Add mousewheel event listener
         window.addEventListener("wheel", function(event) {
+            // Hide the arrow once scrolling starts
+            document.getElementById("scroll-indicator").classList.add("hidden");
             // Increment or decrement scroll progress based on mouse wheel scroll
             if (event.deltaY > 0) {
                 // Scrolling down
@@ -103,8 +230,10 @@
 
             // Move each circle according to its position and scroll progress
             moveCircle('circle1', startX, startY, endX, endY, progress, 0.0);
-            moveCircle('circle2', startX, startY, endX, endY, progress, 0.2);
-            moveCircle('circle3', startX, startY, endX, endY, progress, 0.4);
+            moveCircle('circle2', startX, startY, endX, endY, progress, 0.15);
+            moveCircle('circle3', startX, startY, endX, endY, progress, 0.3);
+            moveCircle('circle4', startX, startY, endX, endY, progress, 0.45);
+            moveCircle('circle5', startX, startY, endX, endY, progress, 0.6);
         }
 
         // Function to apply the movement to individual circles
