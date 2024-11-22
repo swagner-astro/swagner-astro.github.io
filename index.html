@@ -51,12 +51,16 @@ I made this with some help of ChatGPT -->
             border-radius: 50%;
             color: white;
             font-size: 16px;
-            display: flex;
+            display: none;
             justify-content: center;
             align-items: center;
             text-align: center;
             text-decoration: none
             /* transition: transform 0.1s ease-out; /* Make movement smoother */
+        }
+
+        .circle.shown {
+            display: flex;
         }
 
         /* Initial circle positions in the top-left corner */
@@ -244,6 +248,14 @@ I made this with some help of ChatGPT -->
             let adjustedProgress = Math.min(Math.max(progress - delay, 0), 1);
             let newX = startX + (endX - startX) * adjustedProgress;
             let newY = startY + (endY - startY) * adjustedProgress;
+
+            let threshold = 0.1;
+            if (adjustedProgress < threshold){
+                circle.classList.remove('shown');
+            }else{
+                circle.classList.add('shown');
+            }
+
 
             // Apply transformation to the circle
             circle.style.transform = `translate(${newX}px, ${newY}px)`;
