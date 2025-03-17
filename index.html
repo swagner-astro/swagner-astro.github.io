@@ -221,6 +221,12 @@ I made this with some help of ChatGPT -->
             moveCircles(scrollProgress);
         });
 
+        // Add event listener for window resizing
+        window.addEventListener("resize", function() {
+            // Recalculate the circle positions based on the new window size
+            moveCircles(scrollProgress);
+        });
+
         // Function to move the circles based on scroll progress
         function moveCircles(progress) {
             let startX = window.innerWidth * 0; // 10% from left
