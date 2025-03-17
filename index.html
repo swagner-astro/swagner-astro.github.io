@@ -64,35 +64,11 @@ I made this with some help of ChatGPT -->
         }
 
         /* Initial circle positions in the top-left corner */
-        #circle0 {
-            top: 20%;
-            left: 20%;
-        }
-
-        #circle1 {
-            top: 20%;
-            left: 20%;
-        }
-
-        #circle2 {
-            top: 20%;
-            left: 20%;
-        }
-
-        #circle3 {
-            top: 20%;
-            left: 20%;
-        }
-
-        #circle4 {
-            top: 20%;
-            left: 20%;
-        }
-
-        #circle5 {
-            top: 20%;
-            left: 20%;
-        }
+        #circle1 { top: 20%; left: 20%; }
+        #circle2 { top: 20%; left: 20%; }
+        #circle3 { top: 20%; left: 20%; }
+        #circle4 { top: 20%; left: 20%; }
+        #circle5 { top: 20%; left: 20%; }
 
         /* Arrow styling */
         #scroll-indicator {
@@ -174,6 +150,35 @@ I made this with some help of ChatGPT -->
             z-index: 1000; /* Ensure it appears above the image */
             width: 40%;
         }
+
+        /* Mobile-specific adjustments */
+        @media (max-width: 768px) {
+            .full-screen-background {
+                /* display: none; /* Hide the background image */
+            }
+
+            .heading {
+                /*display: none; /* Hide the heading */
+            }
+
+            .normal-text {
+                display: none; /* Hide the normal text */
+            }
+
+            #scroll-indicator {
+                /* display: none; /* Hide the scroll indicator */
+            }
+
+            .social-icons {
+                /* display: none; /* Hide the social icons */
+            }
+
+            .circle {
+                /* display: none; /* Hide the circles */
+            }
+        }
+
+
     </style>
 </head>
 <body>
@@ -228,6 +233,28 @@ I made this with some help of ChatGPT -->
         // Add event listener for window resizing
         window.addEventListener("resize", function() {
             // Recalculate the circle positions based on the new window size
+            moveCircles(scrollProgress);
+        });
+
+        // Add touch event listener (for mobile)
+        window.addEventListener("touchmove", function(event) {
+            event.preventDefault();  // Prevents the default touch actions
+            // Hide the arrow once scrolling starts
+            document.getElementById("scroll-indicator").classList.add("hidden");
+            
+            // Get the touch movement direction
+            let touchMove = event.touches[0].clientY;
+            
+            if (touchMove > 0) {
+                scrollProgress += 0.05;
+            } else {
+                scrollProgress -= 0.05;
+            }
+
+            // Make sure scrollProgress stays within bounds (0 to 1)
+            scrollProgress = Math.max(0, Math.min(maxMovement, scrollProgress));
+
+            // Move the circles based on the current scroll progress
             moveCircles(scrollProgress);
         });
 
