@@ -237,24 +237,31 @@ I made this with some help of ChatGPT -->
         });
 
         // Add touch event listener (for mobile)
+        // mobile event listener
+        let lastTouchY = 0; // Stores the last touch Y position
+
+        window.addEventListener("touchstart", function(event) {
+            lastTouchY = event.touches[0].clientY; // Save the first touch position
+        });
+
         window.addEventListener("touchmove", function(event) {
-            event.preventDefault();  // Prevents the default touch actions
-            // Hide the arrow once scrolling starts
-            document.getElementById("scroll-indicator").classList.add("hidden");
+            event.preventDefault(); // Prevents default scrolling behavior
             
-            // Get the touch movement direction
-            let touchMove = event.touches[0].clientY;
-            
-            if (touchMove > 0) {
+            let touchY = event.touches[0].clientY; // Current touch position
+
+            if (touchY < lastTouchY) {
+                // Scrolling down
                 scrollProgress += 0.05;
-            } else {
+            } else if (touchY > lastTouchY) {
+                // Scrolling up
                 scrollProgress -= 0.05;
             }
 
-            // Make sure scrollProgress stays within bounds (0 to 1)
+            lastTouchY = touchY; // Update last touch position
+
+            // Ensure scrollProgress stays within bounds
             scrollProgress = Math.max(0, Math.min(maxMovement, scrollProgress));
 
-            // Move the circles based on the current scroll progress
             moveCircles(scrollProgress);
         });
 
